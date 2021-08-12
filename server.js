@@ -1,10 +1,12 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 const login = require('./route/Login');
 const logout = require('./route/Logout');
 const session = require('express-session');
 const port = process.env.PORT ||4001;
 
+app.use(cors());
 app.use(session({
     secret: 'corona',
     resave: false,
