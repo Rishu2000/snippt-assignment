@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Welcome = () => {
+const Welcome = ({user}) => {
     return (
-        <div>
-            Welcome
+        <div style={{height:"100vh", display: 'flex', justifyContent: 'center', paddingTop:60}}>
+            Welcome {user}
         </div>
     )
 }
