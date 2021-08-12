@@ -13,7 +13,7 @@ login.use((req,res,next) => {
 
 login.get('/',(req,res) => {
     res.json({
-        Message:'You are in login module.',
+        Message:req.session.Authentication,
         Database:database
     });
 })
