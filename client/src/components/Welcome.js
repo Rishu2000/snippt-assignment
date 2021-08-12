@@ -7,6 +7,8 @@ const Welcome = ({user,setUser}) => {
 
     const [day, setDay] = useState(null);
     const [time, setTime] = useState(null);
+    const [slotError, setSlotError] = useState(null);
+    const [slotSuccess, setSlotSuccess] = useState(null);
 
     const handleLogout = (e) => {
         e.preventDefault();
@@ -19,7 +21,15 @@ const Welcome = ({user,setUser}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('day= '+day+"Time= "+time);
+        axios.post('/login/welcome',{username:user, day, time}).then((res) => {
+            setSlotError(null);
+            console.log(res.data.Message);
+            setSlotSuccess(res.data.Message);
+        }).catch((err) => {
+            //console.dir(err);
+            setSlotError(err.response.data.Message);
+            setSlotSuccess(null);
+        })
     }
 
     return (
@@ -27,6 +37,12 @@ const Welcome = ({user,setUser}) => {
             <div style={{width: "300px"}}>
                 <p>Welcome {user}</p>
                 <form onSubmit={handleSubmit}>
+                {slotError && (
+                    <div className="alert alert-danger">{slotError}</div>
+                )}
+                {slotSuccess && (
+                    <div className="alert alert-success">{slotSuccess}</div>
+                )}
                 <select className="form-select mb-3" onChange={(e) => setDay(e.target.value)}>
                     <option selected>Select Day</option>
                     {days.map((day,key) => (
