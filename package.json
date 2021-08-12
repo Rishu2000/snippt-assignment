@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Rishu2000/snippt-assignment#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-session": "^1.17.2",
     "nodemon": "^2.0.12"
