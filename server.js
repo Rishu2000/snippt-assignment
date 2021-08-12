@@ -8,7 +8,7 @@ app.use(session({
     secret: 'corona',
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: true }
+    cookie: { secure: false }
   }))
 app.use(express.json());
 app.use('/login',login);
