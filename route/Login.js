@@ -1,6 +1,7 @@
 const express = require('express');
 const login = express();
 const database = require('../constants/Database');
+const welcome = require("./Welcome");
 
 login.use((req,res,next) => {
     const {Authentication} = req.session;
@@ -10,6 +11,7 @@ login.use((req,res,next) => {
         res.status(404).json("Not Authenticated.");
     }
 })
+login.use("/welcome",welcome);
 
 login.get('/',(req,res) => {
     res.json({
