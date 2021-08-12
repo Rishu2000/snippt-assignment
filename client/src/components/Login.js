@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import axios from 'axios';
 
-const Login = () => {
+const Login = ({setUser, error, setError}) => {
 
 const [username, setUsername] = useState(null);
 const [password, setPassword] = useState(null);
@@ -9,9 +9,12 @@ const [password, setPassword] = useState(null);
 const handleSubmit = (e) => {
     e.preventDefault();
     axios.post('/login',{username,password}).then((res) => {
-        console.log(res.data.Message);
+        setUser(res.data.Message);
+        setError(null);
     }).catch((err) => {
-        console.log(err);
+        // console.dir(err);
+        setUser(null);
+        setError(err.response.data.Success);
     })
 }
 
