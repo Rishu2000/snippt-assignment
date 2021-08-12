@@ -10,7 +10,7 @@ welcome.get('/', (req, res) => {
 welcome.post('/', (req, res) => {
     const {username,day,time} = req.body;
     if(!day || !time) {
-        res.staus(400).json({
+        res.status(400).json({
             Success:false,
             Message:"Please enter both day and time"
         })
