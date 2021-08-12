@@ -19,7 +19,7 @@ const App = () => {
 
   return (
     <div>
-      {user?<Welcome user={user}/>:<Login setUser={setUser} error={error} setError={setError}/>}
+      {user?<Welcome user={user} setUser={setUser}/>:<Login setUser={setUser} error={error} setError={setError}/>}
     </div>
   )
 }
