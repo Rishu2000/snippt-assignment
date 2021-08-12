@@ -41,6 +41,22 @@ const Welcome = ({user,setUser}) => {
         })
     }
 
+    const handleAccept = (username) => {
+        axios.post('/login/welcome/permission',{username,permission:true}).then((res)=> {
+            console.log(res.data);
+        }).catch((err) => {
+            console.log(err);
+        })
+    }
+
+    const handleReject = (username) => {
+        axios.post('/login/welcome/permission',{username,permission:false}).then((res)=> {
+            console.log(res.body);
+        }).catch((err) => {
+            console.log(err);
+        })
+    }
+
     return (
         <div style={{display: 'flex', justifyContent: 'center', paddingTop:60}}>
             <div>
@@ -86,8 +102,8 @@ const Welcome = ({user,setUser}) => {
                                     <td style={{textAlign: 'center'}}>{item.day}</td>
                                     <td style={{textAlign: 'center'}}>{item.time}</td>
                                     <td style={{textAlign: 'center'}}>
-                                        <button className="btn btn-primary mx-2">Accept</button>
-                                        <button className="btn btn-danger">Reject</button>
+                                        <button className={"mx-2 btn btn-"+(!item.permission?"outline-primary":"primary")} onClick={() => handleAccept(item.username)}>Accept</button>
+                                        <button className={"btn btn-"+(item.permission?"outline-danger":"danger")} onClick={() => handleReject(item.username)}>Reject</button>
                                     </td>
                                     </tr> 
                                 ))}

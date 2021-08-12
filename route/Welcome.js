@@ -30,4 +30,12 @@ welcome.post('/', (req, res) => {
     }
 })
 
+welcome.post('/permission',(req,res) => {
+    const {username,permission} = req.body;
+    const user = slotData.find(item => item.username === username);
+    console.log(req.body);
+    user.permission = permission;
+    res.json(permission);
+})
+
 module.exports = welcome;
