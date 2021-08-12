@@ -3,7 +3,7 @@ const app = express();
 const login = require('./route/Login');
 const logout = require('./route/Logout');
 const session = require('express-session');
-const port = 4001;
+const port = process.env.PORT ||4001;
 
 app.use(session({
     secret: 'corona',
