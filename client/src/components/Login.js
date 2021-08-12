@@ -14,13 +14,14 @@ const handleSubmit = (e) => {
     }).catch((err) => {
         // console.dir(err);
         setUser(null);
-        setError(err.response.data.Success);
+        setError(err.response.data.Message);
     })
 }
 
     return (
         <div style={{height:"100vh", display: 'flex', justifyContent: 'center', paddingTop:60}}>
            <form onSubmit={handleSubmit} style={{width:'400px'}}>
+               {error && <div className="alert alert-danger">{error}</div>}
                 <div className="mb-3">
                     <label className="form-label">Username</label>
                     <input type="text" className="form-control" onChange={(e) => setUsername(e.target.value)}/>
