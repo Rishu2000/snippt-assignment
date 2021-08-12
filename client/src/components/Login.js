@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import axios from 'axios';
 
 const Login = () => {
 
@@ -7,7 +8,11 @@ const [password, setPassword] = useState(null);
 
 const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("username = " +username+" password = " +password);
+    axios.post('/login',{username,password}).then((res) => {
+        console.log(res.data.Message);
+    }).catch((err) => {
+        console.log(err);
+    })
 }
 
     return (
