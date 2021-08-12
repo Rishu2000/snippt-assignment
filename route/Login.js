@@ -3,7 +3,6 @@ const login = express();
 
 login.use((req,res,next) => {
     const {Authentication} = req.session;
-    console.log(req.session);
     if(Authentication || (req.path === '/' && req.method === 'POST')){
         next();
     }else{
