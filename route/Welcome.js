@@ -21,11 +21,19 @@ welcome.post('/', (req, res) => {
                 Message:"Let alumni grant you previous slot permission then after you can register new slot"
             })
         }else{
-            slotData.push({username,day,time,permission:false});
-            res.status(201).json({
-                Success:true,
-                Message:"Created"
-            })
+            const match = slotData.filter(item => item.username && !item.permission);
+            if(match.length >= 2){
+                res.status(401).json({
+                    Success:false,
+                    Message:"Each user can book up to 2 slots."
+                })
+            }else{
+                slotData.push({username,day,time,permission:false});
+                res.status(201).json({
+                    Success:true,
+                    Message:"Created"
+                })
+            }
         }
     }
 })
